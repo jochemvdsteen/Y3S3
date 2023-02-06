@@ -56,7 +56,7 @@ public class MovementJorrit : MonoBehaviour
     private void RotateBody()
     {
         float xMouse = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime;
-        //transform.Rotate(Vector3.up * xMouse);
+        transform.Rotate(Vector3.up * xMouse);
     }
 
     private void Move()
@@ -76,14 +76,15 @@ public class MovementJorrit : MonoBehaviour
         }
     }
 
-    private void Jump()
+    private void Jump(float jumpForce)
     {
-        _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
+        _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     private bool IsGrounded()
     {
         RaycastHit hit;
-        return Physics.SphereCast(transform.position, 1, -transform.up ,out hit, )
+        return false;
+        //return Physics.SphereCast(transform.position, 1, -transform.up ,out hit, )
     }
 }
