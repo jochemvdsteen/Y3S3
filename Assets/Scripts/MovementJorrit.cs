@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovementJorrit : MonoBehaviour
 {
+    //cam movement
     [SerializeField] private Transform _eyes;
     [SerializeField] private float _mouseSensitivity;
     [Range(-90f, 0f)]
@@ -11,9 +12,13 @@ public class MovementJorrit : MonoBehaviour
     [Range(0f, 90f)]
     [SerializeField] private float _camLimitMax;
 
-
+    //movement
     [SerializeField] private float _speed;
     private Rigidbody _rb;
+
+    //jump
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private KeyCode _jumpKey;
 
     private float _camAngle = 0.0f;
 
@@ -28,6 +33,11 @@ public class MovementJorrit : MonoBehaviour
     {
         RotateEyes();
         RotateBody();
+        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            TryJump();
+        }
     }
 
     private void FixedUpdate()
@@ -46,7 +56,7 @@ public class MovementJorrit : MonoBehaviour
     private void RotateBody()
     {
         float xMouse = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime;
-        transform.Rotate(Vector3.up * xMouse);
+        //transform.Rotate(Vector3.up * xMouse);
     }
 
     private void Move()
@@ -56,5 +66,24 @@ public class MovementJorrit : MonoBehaviour
 
         Vector3 dir = transform.right * xDir + transform.forward * zDir;
         _rb.velocity = new Vector3(0, _rb.velocity.y, 0) + dir.normalized * _speed;
+    }
+
+    private void TryJump()
+    {
+        if(IsGrounded())
+        {
+            Jump(_jumpForce);
+        }
+    }
+
+    private void Jump()
+    {
+        _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
+    }
+
+    private bool IsGrounded()
+    {
+        RaycastHit hit;
+        return Physics.SphereCast(transform.position, 1, -transform.up ,out hit, )
     }
 }
