@@ -83,7 +83,7 @@ public class MovementJorrit : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit hit;
+        //RaycastHit hit;
         return false;
         //return Physics.SphereCast(transform.position, 1, -transform.up ,out hit, )
     }
