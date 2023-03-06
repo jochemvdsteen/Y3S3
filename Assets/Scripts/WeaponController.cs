@@ -10,6 +10,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private bool canAttack = true;
     [SerializeField] private float AttackCooldown = 1.0f;
 
+    public bool isAttacking = false;
+
     private Animator anim;
     public AudioClip AxeAttackSound;
 
@@ -31,6 +33,7 @@ public class WeaponController : MonoBehaviour
 
     public void AxeAttack()
     {
+        isAttacking = true;
         canAttack = false;
         AudioSource ac = GetComponent<AudioSource>();
         ac.PlayOneShot(AxeAttackSound);
@@ -40,8 +43,14 @@ public class WeaponController : MonoBehaviour
 
     IEnumerator ResetSwingCooldown()
     {
+        StartCoroutine(ResetAttackBool());
         yield return new WaitForSeconds(AttackCooldown);
         canAttack = true;
     }
 
+    IEnumerator ResetAttackBool()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isAttacking = false;
+    }
 }
