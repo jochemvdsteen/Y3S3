@@ -11,6 +11,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private float AttackCooldown = 1.0f;
 
     private Animator anim;
+    public AudioClip AxeAttackSound;
 
     private void Start()
     {
@@ -31,8 +32,10 @@ public class WeaponController : MonoBehaviour
     public void AxeAttack()
     {
         canAttack = false;
+        AudioSource ac = GetComponent<AudioSource>();
+        ac.PlayOneShot(AxeAttackSound);
         anim.SetTrigger("Swing");
-        StartCoroutine(ResetSwingCooldown());
+        StartCoroutine(ResetSwingCooldown());   
     }
 
     IEnumerator ResetSwingCooldown()
