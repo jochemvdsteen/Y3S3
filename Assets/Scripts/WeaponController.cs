@@ -6,18 +6,23 @@ public class WeaponController : MonoBehaviour
 {
 
     public GameObject Axe;
+    public GameObject Shield;
 
     [SerializeField] private bool canAttack = true;
     [SerializeField] private float AttackCooldown = 1.0f;
+    [SerializeField] private bool canBlock = true;
 
     public bool isAttacking = false;
+    public bool isBlocking = false;
 
-    private Animator anim;
+    private Animator anim_Axe;
+    private Animator anim_Shield;
     public AudioClip AxeAttackSound;
 
     private void Start()
     {
-        anim = Axe.GetComponent<Animator>();
+        anim_Axe = Axe.GetComponent<Animator>();
+        anim_Shield = Shield.GetComponent<Animator>();
     }
 
     void Update()
@@ -29,22 +34,41 @@ public class WeaponController : MonoBehaviour
                 AxeAttack();
             }
         }
+
+        if(Input.GetMouseButton(1))
+        {
+            if(canBlock)
+            {
+                anim_Shield.SetBool("Blocking", true);
+                isBlocking = true;
+                canAttack = false;
+            }
+        }
+        if(Input.GetMouseButtonUp(1))
+        {
+            anim_Shield.SetBool("Blocking", false);
+            isBlocking = false;
+            canAttack = true;
+        }
     }
 
     public void AxeAttack()
     {
         isAttacking = true;
         canAttack = false;
+        canBlock = false;
         AudioSource ac = GetComponent<AudioSource>();
         ac.PlayOneShot(AxeAttackSound);
-        anim.SetTrigger("Swing");
+        anim_Axe.SetTrigger("Swing");
         StartCoroutine(ResetSwingCooldown());   
     }
 
     IEnumerator ResetSwingCooldown()
     {
         StartCoroutine(ResetAttackBool());
-        yield return new WaitForSeconds(AttackCooldown);
+        yield return new WaitForSeconds(AttackCooldown - 0.8f);
+        canBlock = true;
+        yield return new WaitForSeconds(AttackCooldown - 0.2f);
         canAttack = true;
     }
 
