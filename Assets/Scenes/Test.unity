@@ -846,6 +846,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 338783876, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 338783877, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
+      propertyPath: wp
+      value: 
+      objectReference: {fileID: 1684419370}
     - target: {fileID: 1000010550835714, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3079,7 +3087,7 @@ GameObject:
   - component: {fileID: 7560711623871333519}
   m_Layer: 0
   m_Name: FantasyAxe_Unity
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3135,7 +3143,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6055371242741682579}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7281407, y: 3.165118, z: 1.4434276}
@@ -3152,4 +3160,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ce6cb0808c1054ea243f9ada1920fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wp: {fileID: 1684419370}
