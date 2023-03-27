@@ -12,6 +12,10 @@ public class EnemyAnimator : MonoBehaviour
     public GameObject self;
     public WeaponController wp;
 
+    Enemy enemy = new Enemy(3);
+
+    public AudioClip Hurt;
+
     // anims are called: idle_normal, idle_combat, dead, attack_short, move_forward, move_forward fast, damaged
 
     void Start()
@@ -24,18 +28,21 @@ public class EnemyAnimator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AudioSource ac = GetComponent<AudioSource>();
+
         if (other.tag == "Weapon" && wp.isAttacking)
         {
-            hp--;
+            enemy.health--;
+            ac.PlayOneShot(Hurt);
 
-            if (hp > 0)
+            if (enemy.health > 0)
             {
                 anim.SetTrigger("damaged");
                 anim.SetBool("idle_normal", false);
                 anim.SetBool("idle_combat", true);
             }
 
-            if (hp <= 0)
+            if (enemy.health <= 0)
             {
                 StartCoroutine(Death());
             }

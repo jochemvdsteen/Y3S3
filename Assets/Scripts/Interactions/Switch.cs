@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Switch : Interactable
 {
-
     public GameObject _object;
     public bool isOn;
 
