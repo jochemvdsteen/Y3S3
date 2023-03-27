@@ -25,6 +25,8 @@ public class SceneManagement : MonoBehaviour
 
     public static void WinScreen()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("WinScreen");
     }
 
