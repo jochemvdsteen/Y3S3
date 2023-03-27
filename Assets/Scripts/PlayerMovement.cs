@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    [SerializeField] private float _speed;
+    [SerializeField] private float currentSpeed;
+    private float baseSpeed = 5f;
     public float gravity = -9.81f;
     public float jump = 1f;
 
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        _speed = 7f;
+        currentSpeed = baseSpeed;
     }
 
     void Update()
@@ -62,13 +63,13 @@ public class PlayerMovement : MonoBehaviour
             fall = true;
         }
 
-        if(Input.GetKey(KeyCode.Mouse2))
+        if(Input.GetKey(KeyCode.Mouse1))
         {
-            _speed = _speed / 2;
+            currentSpeed = baseSpeed / 2;
         }
         else
         {
-            _speed = 5f;
+            currentSpeed = baseSpeed;
         }
 
         if(canGrab)
@@ -85,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * _speed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
         if(isGrounded)
         {
