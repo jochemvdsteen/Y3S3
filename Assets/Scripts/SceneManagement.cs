@@ -5,9 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
-    public static void PlayGame()
+    public GameObject fadeEffect;
+
+    private void Start()
     {
-        SceneManager.LoadScene("Game");
+        fadeEffect.SetActive(false);
+    }
+
+    public static void Menu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void PlayGame(MonoBehaviour instance)
+    {
+        fadeEffect.SetActive(true);
+        instance.StartCoroutine(StartGame());
     }
 
     public static void WinScreen()
@@ -24,5 +37,11 @@ public class SceneManagement : MonoBehaviour
     {
         Debug.Log("QUIT!");
         Application.Quit();
+    }
+
+    public static IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("Game");
     }
 }

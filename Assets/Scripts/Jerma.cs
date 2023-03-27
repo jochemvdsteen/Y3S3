@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Jerma : Interactable
 {
+
+    public GameObject fadeEffect;
+
+    private void Start()
+    {
+        fadeEffect.SetActive(false);
+    }
+
     void UpdateObject()
     {
-        SceneManagement.WinScreen();
+        StartCoroutine(Fade());
     }
 
     public override string GetDescription()
@@ -17,5 +25,12 @@ public class Jerma : Interactable
     public override void Interact()
     {
         UpdateObject();
+    }
+
+    IEnumerator Fade()
+    {
+        fadeEffect.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        SceneManagement.WinScreen();
     }
 }
