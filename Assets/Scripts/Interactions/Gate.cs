@@ -65,6 +65,5 @@ public class Gate : Interactable
         canInteract = false;
         Message.text = "Thank you my hero";
         yield return new WaitForSeconds(0.5f);
-        
     }
 }

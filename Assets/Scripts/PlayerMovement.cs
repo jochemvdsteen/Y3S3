@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 10f;
+    [SerializeField] private float _speed;
     public float gravity = -9.81f;
     public float jump = 1f;
 
@@ -33,8 +33,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip Land;
     public AudioClip KeyGrab;
 
+    private void Start()
+    {
+        _speed = 7f;
+    }
 
-    // Update is called once per frame
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -59,6 +62,15 @@ public class PlayerMovement : MonoBehaviour
             fall = true;
         }
 
+        if(Input.GetKey(KeyCode.Mouse2))
+        {
+            _speed = _speed / 2;
+        }
+        else
+        {
+            _speed = 5f;
+        }
+
         if(canGrab)
         {
             if(hasKey)
@@ -73,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * _speed * Time.deltaTime);
 
         if(isGrounded)
         {
