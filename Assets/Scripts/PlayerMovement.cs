@@ -26,8 +26,12 @@ public class PlayerMovement : MonoBehaviour
     bool fall = false;
 
     // ability
-    [SerializeField] private KeyCode _abilityKey;
-    [SerializeField] private Ability _ability;
+    public WeaponController weaponController;
+
+    [SerializeField] private KeyCode _abilitySwingKey;
+    [SerializeField] private KeyCode _abilityMagicKey;
+    [SerializeField] private Ability _abilitySwing;
+    [SerializeField] private Ability _abilityMagic;
 
     // key
     public static bool hasKey = false;
@@ -128,9 +132,20 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if(Input.GetKeyDown(_abilityKey))
+        if(Input.GetKeyDown(_abilitySwingKey))
         {
-            _ability.Use(this);
+            if(weaponController.canUse)
+            {
+                _abilitySwing.Use(this);
+            }
+        }
+
+        if (Input.GetKeyDown(_abilityMagicKey))
+        {
+            if (weaponController.canUse)
+            {
+                _abilityMagic.Use(this);
+            }
         }
 
         // _ability = (you can use this to change your ability)

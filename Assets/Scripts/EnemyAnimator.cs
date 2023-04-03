@@ -26,29 +26,42 @@ public class EnemyAnimator : MonoBehaviour
         self = this.gameObject;
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.collider.tag == "Fire")
+        {
+            Damage();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Weapon" && wp.isAttacking)
+        {
+            Damage();
+        }
+    }
+
+    public void Damage()
     {
         AudioSource ac = GetComponent<AudioSource>();
 
-        if (other.tag == "Weapon" && wp.isAttacking)
+        enemy.health--;
+        ac.PlayOneShot(Hurt);
+
+        if (enemy.health > 0)
         {
-            enemy.health--;
-            ac.PlayOneShot(Hurt);
-
-            if (enemy.health > 0)
-            {
-                anim.SetTrigger("damaged");
-                anim.SetBool("idle_normal", false);
-                anim.SetBool("idle_combat", true);
-            }
-
-            if (enemy.health <= 0)
-            {
-                StartCoroutine(Death());
-            }
-
-            //Instantiate(HitParticle, new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z), other.transform.rotation);
+            anim.SetTrigger("damaged");
+            anim.SetBool("idle_normal", false);
+            anim.SetBool("idle_combat", true);
         }
+
+        if (enemy.health <= 0)
+        {
+            StartCoroutine(Death());
+        }
+
+        //Instantiate(HitParticle, new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z), other.transform.rotation);
     }
 
     IEnumerator Death()

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class Ability : ScriptableObject
 {
-    public abstract void Use(PlayerMovement playerz);
+    public abstract void Use(PlayerMovement player);
 }
