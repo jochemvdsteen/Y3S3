@@ -45563,6 +45563,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1113780987442740900, guid: fb572a14ff33d0b4a93331c18f075c9b, type: 3}
     - target: {fileID: 5360923621212110317, guid: b9be0132cc7cc7e45a457c70d5f72207, type: 3}
+      propertyPath: MagicSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c924fe47675a6f04dbfe8a1c5015b343, type: 3}
+    - target: {fileID: 5360923621212110317, guid: b9be0132cc7cc7e45a457c70d5f72207, type: 3}
       propertyPath: MagicSpawn
       value: 
       objectReference: {fileID: 1644950750}

@@ -28,6 +28,7 @@ public class WeaponController : MonoBehaviour
     private Animator anim_Axe;
     private Animator anim_Shield;
     public AudioClip AxeAttackSound;
+    public AudioClip MagicSound;
 
     private void Start()
     {
@@ -77,7 +78,10 @@ public class WeaponController : MonoBehaviour
 
     IEnumerator FireballShoot()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
+        AudioSource ac = GetComponent<AudioSource>();
+        ac.PlayOneShot(MagicSound);
+        yield return new WaitForSeconds(0.3f);
         var projObj = Instantiate(Fireball, MagicSpawn.position, MagicSpawn.rotation) as GameObject;
         projObj.GetComponent<Rigidbody>().AddForce(transform.forward * 100 * fireballSpeed);
     }
