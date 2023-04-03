@@ -6,26 +6,34 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
+    // movement
     [SerializeField] private float currentSpeed;
     private float baseSpeed = 5f;
     public float gravity = -9.81f;
     public float jump = 1f;
-
     private int jumpAmount;
 
+    // groundcheck
     public Transform groundCheck;
     public float groundDistance = 0.01f;
     public float fallDistance = 1f;
     public LayerMask groundMask;
 
+    // falling
     Vector3 velocity;
     bool isGrounded;
     public bool isFalling;
     bool fall = false;
 
+    // ability
+    [SerializeField] private KeyCode _abilityKey;
+    [SerializeField] private Ability _ability;
+
+    // key
     public static bool hasKey = false;
     public bool canGrab = true;
 
+    // audio
     public AudioSource Footsteps;
     public AudioSource JumpLand;
     public AudioSource Key;
@@ -33,6 +41,15 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip Jump;
     public AudioClip Land;
     public AudioClip KeyGrab;
+
+    // example for future reference
+    /*private Rigidbody2D _rb;
+
+    public Rigidbody2D Rb
+    {
+        get => _rb;
+        private set => _rb = value;
+    }*/
 
     private void Start()
     {
@@ -110,5 +127,12 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if(Input.GetKeyDown(_abilityKey))
+        {
+            _ability.Use(this);
+        }
+
+        // _ability = (you can use this to change your ability)
     }
 }

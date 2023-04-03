@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: a1a21df98c4ce61418b36c0ce6457b52, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: b81bdba242b5a344d8abfadcad1aaacf, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 0791c3910bb1e4b45baff89d7d04d23b, type: 2}
 --- !u!196 &5
 NavMeshSettings:
@@ -45434,6 +45434,14 @@ PrefabInstance:
       propertyPath: interactionHoldProgress
       value: 
       objectReference: {fileID: 1139622278}
+    - target: {fileID: 5360923620831873460, guid: b9be0132cc7cc7e45a457c70d5f72207, type: 3}
+      propertyPath: _ability
+      value: 
+      objectReference: {fileID: 11400000, guid: 427dc7841eeb63e4884bb6733c372d64, type: 2}
+    - target: {fileID: 5360923620831873460, guid: b9be0132cc7cc7e45a457c70d5f72207, type: 3}
+      propertyPath: _abilityKey
+      value: 102
+      objectReference: {fileID: 0}
     - target: {fileID: 5360923620831873461, guid: b9be0132cc7cc7e45a457c70d5f72207, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -84275,6 +84283,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8324763246618594281, guid: e00b8f66b9c5b254b8498e52886b1dd5, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324763246618594281, guid: e00b8f66b9c5b254b8498e52886b1dd5, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324763246618594281, guid: e00b8f66b9c5b254b8498e52886b1dd5, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324763246618594281, guid: e00b8f66b9c5b254b8498e52886b1dd5, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 8324763246618594283, guid: e00b8f66b9c5b254b8498e52886b1dd5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -106282,8 +106306,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
